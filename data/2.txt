@@ -1,0 +1,9 @@
+name_of_business
+branch_name
+address
+nature_of_business
+status
+date_of_comm
+data_of_expiry
+certificate_no
+fee_and_levy

@@ -46,22 +46,24 @@ def convert(input_folder,output_folder,prefix, label_f):
     len_ls = [len(i)-4 for i in name_ls]
     return max(len_ls), label
 
-def _string_to_json_file(string, string2):
+def _string_to_json_file(string, string2, dict_file):
     ids = list(string+string2)
     #unique
     ids = list(set(ids))
     #d = {i: ids[i] for i in range(len(ids))}
     #print (d)
-    file=open("./output/dictionary.txt",'w')
     for i in ids:
-        file.write(str(i)+'\n');
-    file.close()
+        dict_file.write(str(i)+'\n');
+    dict_file.close()
 
     print ("<<<save dictionary file")
 
 all_files = 0 
+import shutil 
 if __name__ == '__main__':
+    
     output_folder='./ocr_data/'
+    shutil.rmtree(output_folder)
     os.mkdir(output_folder)
     prefix = "train"
     img_output_folder = os.path.join(output_folder, prefix)
@@ -75,5 +77,6 @@ if __name__ == '__main__':
     print ("<<<< move folder for cn")
     len_cn, label_cn= convert(input_folder_cn,img_output_folder, prefix, label_f)
     print ("<<<<max length: ", max(len_en,len_cn))
-    _string_to_json_file(label_en,label_cn)
+    dict_file=open(os.path.join(output_folder, "dictionary.txt"),'w')
+    _string_to_json_file(label_en,label_cn, dict_file)
 

@@ -8,7 +8,7 @@ rm -rf "images/train_cn"
 #-b 1 --output_dir "images/train_cn" --font_dir "./font/"
 
 trdg \
--c $train_count -l cn -i '/home/ec2-user/SageMaker/ESD/source/data_generation/data/ZH_1.txt' -na 2 \
+-c $train_count -l cn -i './data/ZH_1.txt' -na 2 \
 -b 1 --output_dir "images/train_cn" -ft "./setofont/setofont.ttf"
 
 #en

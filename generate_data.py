@@ -32,16 +32,17 @@ def get_training_data_img_and_labels(string_file, font_dir, output_folder, img_p
     generator = GeneratorFromStrings(
         strings,
         fonts = ['setofont/setofont.ttf'], 
-        blur=2,
-        random_blur=True
+#         blur=2,
+#         random_blur=True
     )
     labels = [] 
     i = 0 
     for img, lbl in generator:
         if i<=limit: 
             file_name = os.path.join(output_folder, img_prefix, str(i)+".jpg")
+            in_label_file_name = os.path.join(img_prefix, str(i)+".jpg")
             img.save(file_name)
-            labels.append((lbl, file_name))
+            labels.append((in_label_file_name, lbl))
             i+=1 
         else: 
             break
@@ -64,7 +65,8 @@ prefix = sys.argv[2]
 string_file = sys.argv[3]
 ## directories of fonts 
 fonts_dir = sys.argv[4]
-shutil.rmtree(output_folder)
+if os.path.exists(output_folder): 
+    shutil.rmtree(output_folder)
 os.mkdir(output_folder)
 os.mkdir(os.path.join(output_folder, prefix))
 get_training_data_img_and_labels(string_file, fonts_dir, output_folder, prefix)    

@@ -8,12 +8,9 @@ matplotlib
 zxing
 fitz
 PyMuPDF
-tensorboardX
-torchsummary
 fontTools
 tqdm==4.42.1
 shapely
 imgaug
 pyclipper
 lmdb
-paddlepaddle

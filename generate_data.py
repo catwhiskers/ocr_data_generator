@@ -52,13 +52,22 @@ def get_training_data_img_and_labels(string_file, font_dir, output_folder, img_p
         label_file.write(line)
         label_file.write('\n')
 
+
         
-output_folder='./ocr_data/'
+import sys 
+
+## root directory of an output folder 
+output_folder=sys.argv[1]
+## image folder under root folder 
+prefix = sys.argv[2]
+## strings to be generated 
+string_file = sys.argv[3]
+## directories of fonts 
+fonts_dir = sys.argv[4]
 shutil.rmtree(output_folder)
 os.mkdir(output_folder)
-prefix = "train"
 os.mkdir(os.path.join(output_folder, prefix))
-get_training_data_img_and_labels('data/ZH_1.txt', 'setofont', output_folder, prefix)    
+get_training_data_img_and_labels(string_file, fonts_dir, output_folder, prefix)    
 
 
 
